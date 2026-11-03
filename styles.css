@@ -1,0 +1,135 @@
+/* Importamos las tipografías de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap');
+
+/* 1. VARIABLES GLOBALES (:root) */
+:root {
+    --color-principal: #D6457C;
+    --color-secundario: #a385e0; /* Violeta suave */
+    --color-fondo: #f8f9fa; /* Fondo claro */
+    --color-texto: #333333;
+    --color-blanco: #ffffff;
+    
+    --fuente-titulos: 'Poppins', system-ui, sans-serif;
+    --fuente-texto: 'Inter', system-ui, sans-serif;
+    
+    --sombra-tarjeta: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 2. REINICIO Y ESTILO BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-texto);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    padding: 1rem;
+}
+
+/* Para que el atributo HTML 'hidden' funcione sin que CSS lo rompa */
+[hidden] {
+    display: none !important;
+}
+
+/* 3. TIPOGRAFÍAS PARA TÍTULOS */
+h1, h2, h3 {
+    font-family: var(--fuente-titulos);
+    color: var(--color-principal);
+    margin-bottom: 1rem;
+}
+
+/* 4. ENCABEZADO (Diseño Celular por defecto) */
+header {
+    background-color: var(--color-blanco);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--sombra-tarjeta);
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column; /* Apilado en celular */
+    gap: 1rem;
+}
+
+/* 5. TARJETAS (Cursos, Muro, Formularios) */
+form, .tarjeta-curso, .publicacion, #contenedor-consigna, #lista-entregas li {
+    background-color: var(--color-blanco);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--sombra-tarjeta);
+    margin-bottom: 1.5rem;
+}
+
+/* Franja de color arriba para los cursos */
+.tarjeta-curso {
+    border-top: 6px solid var(--color-principal);
+}
+
+/* Quitamos los puntos por defecto de las listas */
+ul {
+    list-style: none;
+}
+
+/* 6. ENTRADAS DE DATOS (Inputs y Textareas) */
+input, select, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: var(--fuente-texto);
+    outline-color: var(--color-secundario);
+}
+
+/* 7. BOTONES (Con efecto Hover) */
+button {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-family: var(--fuente-titulos);
+    cursor: pointer;
+    width: 100%; /* Botón ancho entero en celular */
+    transition: all 0.3s ease; /* Anima el cambio suavemente */
+}
+
+button:hover {
+    background-color: var(--color-secundario);
+    transform: translateY(-3px); /* Lo eleva un poquito */
+    box-shadow: 0 6px 15px rgba(163, 133, 224, 0.4);
+}
+
+/* 8. DISEÑO RESPONSIVO (A partir de 768px - Tablets y PCs) */
+@media (min-width: 768px) {
+    /* El encabezado pasa a estar uno al lado del otro */
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Los botones dejan de ocupar el 100% del ancho */
+    button {
+        width: auto;
+    }
+
+    /* La vista de cursos se divide en 2 columnas */
+    #grilla-cursos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+}
+
+/* 9. CONTROL DE ACCESO (Docente/Alumno) */
+body[data-modo="alumno"] .solo-docente {
+    display: none !important;
+}
+
+/* Oculta cosas de alumnos si estamos en modo docente */
+body[data-modo="docente"] .solo-alumno {
+    display: none !important;
+}

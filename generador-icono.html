@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>Generar Íconos</title></head>
+<body style="text-align: center; font-family: sans-serif; margin-top: 50px;">
+    <h2>Generador de Íconos para el Aula</h2>
+    <canvas id="canvas192" width="192" height="192" style="border:1px solid #ccc; margin: 10px; border-radius: 20px;"></canvas>
+    <canvas id="canvas512" width="512" height="512" style="border:1px solid #ccc; margin: 10px; border-radius: 50px;"></canvas>
+    <br>
+    <button onclick="descargar('canvas192', 'icono-192.png')">Descargar icono-192.png</button>
+    <button onclick="descargar('canvas512', 'icono-512.png')">Descargar icono-512.png</button>
+
+    <script>
+        function dibujar(id, size) {
+            const ctx = document.getElementById(id).getContext('2d');
+            ctx.fillStyle = '#D6457C'; // Color de tu app
+            ctx.fillRect(0, 0, size, size);
+            ctx.fillStyle = 'white';
+            ctx.font = `${size * 0.5}px sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🎓', size / 2, size / 2);
+        }
+        dibujar('canvas192', 192);
+        dibujar('canvas512', 512);
+
+        function descargar(id, nombre) {
+            const enlace = document.createElement('a');
+            enlace.download = nombre;
+            enlace.href = document.getElementById(id).toDataURL('image/png');
+            enlace.click();
+        }
+    </script>
+</body>
+</html>
